@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'category', component: SingleCategoryComponent },
   { path: 'post', component: SingleCategoryComponent },
-  {path: 'about', component: AboutComponent}
+  { path: 'about', component: AboutComponent },
   { path: 'term-conditions', component: TermsAndConditionsComponent },
   { path: 'contact', component: ContactUsComponent },
 ];
