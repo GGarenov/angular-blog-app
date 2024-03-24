@@ -23,6 +23,12 @@ export class CategoriesComponent {
       .add(categoryData)
       .then((docRef) => {
         console.log(docRef);
+
+        this.firestore
+          .doc(`categories/${docRef.id}`)
+          .collection('subCategories')
+          .add(subCategoryData)
+          .then((docRef1) => {});
         this.firestore
           .collection('categories')
           .doc(docRef.id)
@@ -30,6 +36,13 @@ export class CategoriesComponent {
           .add(subCategoryData)
           .then((docRef1) => {
             console.log(docRef1);
+
+            this.firestore
+              .doc(`categories/${docRef.id}/subCategories/${docRef1.id}`)
+              .collection('subSubCategories')
+              .add(subCategoryData)
+              .then((docRef2) => {});
+
             this.firestore
               .collection('categories')
               .doc(docRef.id)
