@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CategoriesService } from '../services/categories.service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-categories',
@@ -11,61 +12,10 @@ export class CategoriesComponent {
   constructor(private categoryService: CategoriesService) {}
 
   onSubmit(formData: NgForm) {
-    let categoryData = {
+    let categoryData: Category = {
       category: formData.value.category,
     };
 
     this.categoryService.saveData(categoryData);
-
-    //   let subCategoryData = {
-    //     subCategory: 'subCategory1',
-    //   };
-
-    //   this.firestore
-    //     .collection('categories')
-    //     .add(categoryData)
-    //     .then((docRef) => {
-    //       console.log(docRef);
-
-    //       this.firestore
-    //         .doc(`categories/${docRef.id}`)
-    //         .collection('subCategories')
-    //         .add(subCategoryData)
-    //         .then((docRef1) => {});
-    //       this.firestore
-    //         .collection('categories')
-    //         .doc(docRef.id)
-    //         .collection('subCategories')
-    //         .add(subCategoryData)
-    //         .then((docRef1) => {
-    //           console.log(docRef1);
-
-    //           this.firestore
-    //             .doc(`categories/${docRef.id}/subCategories/${docRef1.id}`)
-    //             .collection('subSubCategories')
-    //             .add(subCategoryData)
-    //             .then((docRef2) => {});
-
-    //           this.firestore
-    //             .collection('categories')
-    //             .doc(docRef.id)
-    //             .collection('subCategories')
-    //             .doc(docRef1.id)
-    //             .collection('subSubCategories')
-    //             .add(subCategoryData)
-    //             .then((docRef2) => {
-    //               console.log('Second level sub category added');
-    //             })
-    //             .catch((err) => {
-    //               console.log(err);
-    //             });
-    //         })
-    //         .catch((err) => {
-    //           console.log(err);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
   }
 }
