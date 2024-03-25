@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoriesService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private toastr: ToastrService
+  ) {}
 
   saveData(data: any) {
     this.firestore
@@ -13,6 +17,7 @@ export class CategoriesService {
       .add(data)
       .then((docRef) => {
         console.log(docRef);
+        this.toastr.success('Category added successfully!', 'Success');
       })
       .catch((err) => {
         console.log(err);
