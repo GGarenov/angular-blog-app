@@ -5,7 +5,7 @@ import { Category } from '../models/category';
 
 interface CategoryData {
   id: string;
-  data: Category;
+  category: string;
 }
 
 @Component({
