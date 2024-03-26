@@ -15,6 +15,8 @@ interface CategoryData {
 })
 export class CategoriesComponent {
   categoryArray: Array<CategoryData> = [];
+  formCategory: string = '';
+  formStatus: string = 'Add';
 
   constructor(private categoryService: CategoriesService) {}
 
@@ -32,5 +34,10 @@ export class CategoriesComponent {
 
     this.categoryService.saveData(categoryData);
     formData.reset();
+  }
+
+  onEdit(category: CategoryData) {
+    this.formCategory = category.category;
+    this.formStatus = 'Edit';
   }
 }
