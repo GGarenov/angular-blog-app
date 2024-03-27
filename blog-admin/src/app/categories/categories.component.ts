@@ -35,14 +35,11 @@ export class CategoriesComponent {
 
     if (this.formStatus == 'Add') {
       this.categoryService.saveData(categoryData);
-      formData.reset();
     } else if (this.formStatus == 'Edit') {
       this.categoryService.updateData(this.categoryId, categoryData);
-      formData.reset();
       this.formStatus = 'Add';
     }
 
-    this.categoryService.saveData(categoryData);
     formData.reset();
   }
 
