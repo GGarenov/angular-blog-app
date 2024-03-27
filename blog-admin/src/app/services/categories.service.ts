@@ -43,8 +43,7 @@ export class CategoriesService {
 
   updateData(id: string, EditData: Category) {
     this.firestore
-      .collection('categories')
-      .doc(id)
+      .doc(`categories/${id}`)
       .update(EditData)
       .then((docRef) => {
         this.toastr.success('Data updated successfully!');
@@ -53,8 +52,7 @@ export class CategoriesService {
 
   deleteData(id: string) {
     this.firestore
-      .collection('categories')
-      .doc(id)
+      .doc(`categories/${id}`)
       .delete()
       .then((docRef) => {
         this.toastr.success('Data deleted successfully!');
