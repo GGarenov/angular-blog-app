@@ -50,4 +50,14 @@ export class CategoriesService {
         this.toastr.success('Data updated successfully!');
       });
   }
+
+  deleteData(id: string) {
+    this.firestore
+      .collection('categories')
+      .doc(id)
+      .delete()
+      .then((docRef) => {
+        this.toastr.success('Data deleted successfully!');
+      });
+  }
 }
