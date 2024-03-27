@@ -15,7 +15,6 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { AllPostComponent } from './all-post/all-post.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { NewPostComponent } from './post/new-post/new-post.component';
     FooterComponent,
     DashboardComponent,
     CategoriesComponent,
-    AllPostComponent,
     NewPostComponent,
   ],
   imports: [
