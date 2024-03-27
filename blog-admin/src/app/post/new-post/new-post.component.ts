@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-post.component.css'],
 })
 export class NewPostComponent {
+  permalink: string = '';
+
+  constructor() {}
+
   onTitleChanged(event: Event) {
     const target = event.target as HTMLInputElement;
     const title = target.value;
-    let permalink = title.replace(/\s/g, '-');
-    console.log(permalink);
+    this.permalink = title.replace(/\s/g, '-');
   }
 }
