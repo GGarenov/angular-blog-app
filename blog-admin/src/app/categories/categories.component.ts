@@ -17,6 +17,7 @@ export class CategoriesComponent {
   categoryArray: Array<CategoryData> = [];
   formCategory: string = '';
   formStatus: string = 'Add';
+  categoryId: string = '';
 
   constructor(private categoryService: CategoriesService) {}
 
@@ -32,12 +33,22 @@ export class CategoriesComponent {
       category: formData.value.category,
     };
 
+    if (this.formStatus == 'Add') {
+      this.categoryService.saveData(categoryData);
+      formData.reset();
+    } else if (this.formStatus == 'Edit') {
+      this.categoryService.updateData(this.categoryId, categoryData);
+      formData.reset();
+      this.formStatus = 'Add';
+    }
+
     this.categoryService.saveData(categoryData);
     formData.reset();
   }
 
-  onEdit(category: CategoryData) {
+  onEdit(category: CategoryData, id: string) {
     this.formCategory = category.category;
     this.formStatus = 'Edit';
+    this.categoryId = id;
   }
 }
