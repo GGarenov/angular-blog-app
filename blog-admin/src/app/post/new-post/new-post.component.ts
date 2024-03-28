@@ -71,4 +71,8 @@ export class NewPostComponent implements OnInit {
       this.selectedImg = target.files[0];
     }
   }
+
+  onSubmit() {
+    console.log(this.postForm.value);
+  }
 }
