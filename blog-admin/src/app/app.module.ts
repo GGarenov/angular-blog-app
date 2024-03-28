@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -17,6 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 import { AllPostComponent } from './post/all-post/all-post.component';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,8 @@ import { AllPostComponent } from './post/all-post/all-post.component';
     FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    AngularEditorModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
