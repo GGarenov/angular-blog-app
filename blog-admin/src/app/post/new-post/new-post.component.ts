@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 interface Category {
@@ -28,12 +28,12 @@ export class NewPostComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.postForm = this.fb.group({
-      title: [''],
-      permalink: [''],
-      excerpt: [''],
-      category: [''],
-      postImg: [''],
-      content: [''],
+      title: ['', [Validators.required, Validators.minLength(10)]],
+      permalink: ['', [Validators.required]],
+      excerpt: ['', [Validators.required, Validators.minLength(10)]],
+      category: ['', [Validators.required]],
+      postImg: ['', [Validators.required]],
+      content: ['', [Validators.required]],
     });
   }
 
@@ -46,6 +46,10 @@ export class NewPostComponent implements OnInit {
         },
       }));
     });
+  }
+
+  get fc() {
+    return this.postForm.controls;
   }
 
   onTitleChanged(event: Event) {
