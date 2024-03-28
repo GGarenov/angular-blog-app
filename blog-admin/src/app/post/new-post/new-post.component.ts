@@ -1,16 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from 'src/app/services/categories.service';
+
+interface Category {
+  id: string;
+  data: {
+    category: string;
+  };
+}
 
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.css'],
 })
-export class NewPostComponent {
+export class NewPostComponent implements OnInit {
   permalink: string = '';
   imgSrc: any = './assets/placeholder-image.png';
   selectedImg: any;
 
-  constructor() {}
+  categories: Category[] = [];
+
+  constructor(private categoryService: CategoriesService) {}
+
+  ngOnInit(): void {
+    this.categoryService.loadData().subscribe((val: any[]) => {
+      this.categories = val.map((item) => ({
+        id: item.id,
+        data: {
+          category: item.category,
+        },
+      }));
+    });
+  }
 
   onTitleChanged(event: Event) {
     const target = event.target as HTMLInputElement;
