@@ -29,13 +29,17 @@ export class PostsService {
           postData.postImgPath = URL;
           console.log(postData);
 
-          this.firestore
-            .collection('posts')
-            .add(postData)
-            .then((docRef) => {
-              this.toastr.success('Data saved successfully');
-            });
+          this.saveData(postData);
         });
     });
+  }
+
+  saveData(postData: any) {
+    this.firestore
+      .collection('posts')
+      .add(postData)
+      .then((docRef) => {
+        this.toastr.success('Data saved successfully');
+      });
   }
 }
