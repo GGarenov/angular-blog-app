@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/services/posts.service';
 
 interface Post {
+  id: string;
   postImgPath: string;
   title: string;
   excerpt: string;
