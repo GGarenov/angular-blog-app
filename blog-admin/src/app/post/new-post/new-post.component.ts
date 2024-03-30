@@ -74,13 +74,15 @@ export class NewPostComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.postForm.value);
+    let splitted = this.postForm.value.category.split('-');
+    console.log(splitted);
+
     const postData: Post = {
       title: this.postForm.value.title,
       permalink: this.postForm.value.permalink,
       category: {
-        categoryId: '',
-        category: '',
+        categoryId: splitted[0],
+        category: splitted[1],
       },
       postImgPath: '',
       excerpt: this.postForm.value.excerpt,
