@@ -28,7 +28,7 @@ export class PostsService {
         .getDownloadURL()
         .subscribe((URL) => {
           console.log(URL);
-          // const postData = { postImgPath: '' }; // Define postData object with postImgPath property
+
           postData.postImgPath = URL;
           console.log(postData);
 
@@ -60,5 +60,9 @@ export class PostsService {
           });
         })
       );
+  }
+
+  loadOneData(id: string) {
+    return this.firestore.doc(`posts/${id}`).valueChanges();
   }
 }

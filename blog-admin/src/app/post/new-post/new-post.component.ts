@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
+import { ActivatedRoute } from '@angular/router';
 
 interface Category {
   id: string;
@@ -23,20 +24,42 @@ export class NewPostComponent implements OnInit {
 
   categories: Category[] = [];
 
-  postForm: FormGroup;
+  postForm: FormGroup = new FormGroup({});
+
+  post: any;
+
+  formStatus: string = 'Add new';
 
   constructor(
     private categoryService: CategoriesService,
     private fb: FormBuilder,
-    private postService: PostsService
+    private postService: PostsService,
+    private route: ActivatedRoute
   ) {
-    this.postForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]],
-      permalink: ['', [Validators.required]],
-      excerpt: ['', [Validators.required, Validators.minLength(10)]],
-      category: ['', [Validators.required]],
-      postImg: ['', [Validators.required]],
-      content: ['', [Validators.required]],
+    this.route.queryParams.subscribe((val) => {
+      this.postService.loadOneData(val['id']).subscribe((post) => {
+        this.post = post;
+        this.postForm = this.fb.group({
+          title: [
+            this.post.title,
+            [Validators.required, Validators.minLength(10)],
+          ],
+          permalink: [this.post.permalink, [Validators.required]],
+          excerpt: [
+            this.post.excerpt,
+            [Validators.required, Validators.minLength(10)],
+          ],
+          category: [
+            `${this.post.category.categoryId}-${this.post.category.category}`,
+            [Validators.required],
+          ],
+          postImg: ['', [Validators.required]],
+          content: [this.post.content, [Validators.required]],
+        });
+
+        this.imgSrc = this.post.postImgPath;
+        this.formStatus = 'Edit';
+      });
     });
   }
 
