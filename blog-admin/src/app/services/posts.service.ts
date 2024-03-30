@@ -98,4 +98,13 @@ export class PostsService {
         this.router.navigate(['/post']);
       });
   }
+
+  markFeatured(id: any, featuredData: any) {
+    this.firestore
+      .doc(`posts/${id}`)
+      .update(featuredData)
+      .then(() => {
+        this.toastr.info('Featured status updated successfully');
+      });
+  }
 }

@@ -27,7 +27,7 @@
                 <th>No</th>
                 <th>Post Image</th>
                 <th>Title</th>
-                <th>Excerpt</th>
+                <!-- <th>Excerpt</th> -->
                 <th>Category</th>
                 <th>Date</th>
                 <th>Actions</th>
@@ -44,7 +44,7 @@
                   />
                 </td>
                 <td width="200">{{ post.title }}</td>
-                <td width="300">{{ post.excerpt }}</td>
+                <!-- <td width="300">{{ post.excerpt }}</td> -->
                 <td>{{ post.category.category }}</td>
                 <td>{{ post.createdAt.seconds * 1000 | date }}</td>
                 <td>
@@ -61,6 +61,20 @@
                       (click)="onDelete(post.postImgPath, post.id)"
                     >
                       Delete
+                    </button>
+                    <button
+                      *ngIf="!post.isFeatured"
+                      class="btn btn-sm btn-success ml-2"
+                      (click)="onFeatured(post.id, true)"
+                    >
+                      Mark Featured
+                    </button>
+                    <button
+                      *ngIf="post.isFeatured"
+                      class="btn btn-sm btn-info ml-2"
+                      (click)="onFeatured(post.id, false)"
+                    >
+                      Remove Featured
                     </button>
                   </div>
                 </td>
