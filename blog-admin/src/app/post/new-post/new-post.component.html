@@ -108,7 +108,7 @@
             <option value="" disabled>Please select a category</option>
             <option
               *ngFor="let category of categories"
-              [value]="category.data.category"
+              value="{{ category.id }}-{{ category.data.category }}"
             >
               {{ category.data.category }}
             </option>

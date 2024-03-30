@@ -13,7 +13,7 @@ export class PostsService {
     private toastr: ToastrService
   ) {}
 
-  uploadImage(selectedImage: any, postData: string) {
+  uploadImage(selectedImage: any, postData: any) {
     const filePath = `postIMG/${Date.now()}`;
     console.log(filePath);
 
@@ -25,7 +25,7 @@ export class PostsService {
         .getDownloadURL()
         .subscribe((URL) => {
           console.log(URL);
-          const postData = { postImgPath: '' }; // Define postData object with postImgPath property
+          // const postData = { postImgPath: '' }; // Define postData object with postImgPath property
           postData.postImgPath = URL;
           console.log(postData);
 
