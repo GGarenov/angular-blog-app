@@ -22,6 +22,7 @@ import { NewPostComponent } from './post/new-post/new-post.component';
 import { AllPostComponent } from './post/all-post/all-post.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoginComponent } from './auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CategoriesComponent,
     NewPostComponent,
     AllPostComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
