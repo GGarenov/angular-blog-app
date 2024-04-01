@@ -31,4 +31,17 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(user));
     });
   }
+
+  logout() {
+    this.firebaseAuth
+      .signOut()
+      .then(() => {
+        this.toastr.success('Logout Successful');
+        localStorage.removeItem('user');
+        this.router.navigate(['/login']);
+      })
+      .catch((e) => {
+        this.toastr.error(e);
+      });
+  }
 }
