@@ -28,7 +28,7 @@ export class AuthService {
 
   loadUser() {
     this.firebaseAuth.authState.subscribe((user) => {
-      console.log(JSON.parse(JSON.stringify(user)));
+      localStorage.setItem('user', JSON.stringify(user));
     });
   }
 }
