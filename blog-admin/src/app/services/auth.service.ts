@@ -16,6 +16,9 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((logRef) => {
         this.toastr.success('Login Successful');
+      })
+      .catch((e) => {
+        this.toastr.error(e);
       });
   }
 }
