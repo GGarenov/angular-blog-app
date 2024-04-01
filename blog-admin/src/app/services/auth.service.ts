@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   login(email: string, password: string) {
@@ -16,6 +18,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((logRef) => {
         this.toastr.success('Login Successful');
+        this.router.navigate(['/']);
       })
       .catch((e) => {
         this.toastr.error(e);
