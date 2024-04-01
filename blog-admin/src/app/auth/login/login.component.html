@@ -9,7 +9,7 @@
             <p>Login into your admin account</p>
           </div>
 
-          <form #loginForm="ngForm">
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
             <div class="form-group">
               <input
                 type="email"
