@@ -18,10 +18,17 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((logRef) => {
         this.toastr.success('Login Successful');
+        this.loadUser();
         this.router.navigate(['/']);
       })
       .catch((e) => {
         this.toastr.error(e);
       });
+  }
+
+  loadUser() {
+    this.firebaseAuth.authState.subscribe((user) => {
+      console.log(JSON.parse(JSON.stringify(user)));
+    });
   }
 }
