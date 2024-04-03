@@ -23,8 +23,11 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.isLoggedInGuard) {
+      console.log('Access granted');
+
       return true;
     } else {
+      console.log('Access denied');
       return false;
     }
   }
