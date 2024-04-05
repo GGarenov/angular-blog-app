@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from 'src/app/services/categories.service';
+
+interface Category {
+  id: string;
+  category: string;
+  // include other properties if they exist
+}
 
 @Component({
   selector: 'app-category-navbar',
   templateUrl: './category-navbar.component.html',
-  styleUrls: ['./category-navbar.component.css']
+  styleUrls: ['./category-navbar.component.css'],
 })
-export class CategoryNavbarComponent {
+export class CategoryNavbarComponent implements OnInit {
+  categoryArray: Array<Category> = []; // Define the type here
 
+  constructor(private categoryService: CategoriesService) {}
+
+  ngOnInit(): void {
+    this.categoryService.loadData().subscribe((val) => {
+      this.categoryArray = val;
+    });
+  }
 }
