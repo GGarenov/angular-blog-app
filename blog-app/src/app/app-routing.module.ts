@@ -9,7 +9,7 @@ import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'category', component: SingleCategoryComponent },
+  { path: 'category/:id', component: SingleCategoryComponent },
   { path: 'post', component: SinglePostComponent },
   { path: 'about', component: AboutComponent },
   { path: 'term-conditions', component: TermsAndConditionsComponent },
