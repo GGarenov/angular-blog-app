@@ -10,7 +10,24 @@ export class PostService {
 
   loadFeatured() {
     return this.firestore
-      .collection('posts', (ref) => ref.where('isFeatured', '==', true))
+      .collection('posts', (ref) =>
+        ref.where('isFeatured', '==', true).limit(4)
+      )
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const data = a.payload.doc.data() as object;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+  }
+
+  loadLatest() {
+    return this.firestore
+      .collection('posts', (ref) => ref.orderBy('createdAt', 'desc'))
       .snapshotChanges()
       .pipe(
         map((actions) => {
