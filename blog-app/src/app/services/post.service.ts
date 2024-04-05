@@ -56,4 +56,8 @@ export class PostService {
         })
       );
   }
+
+  loadOnePost(postId: string) {
+    return this.firestore.doc(`posts/${postId}`).valueChanges();
+  }
 }
