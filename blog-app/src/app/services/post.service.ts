@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 export class PostService {
   constructor(private firestore: AngularFirestore) {}
 
-  loadData() {
+  loadFeatured() {
     return this.firestore
-      .collection('posts')
+      .collection('posts', (ref) => ref.where('isFeatured', '==', true))
       .snapshotChanges()
       .pipe(
         map((actions) => {
