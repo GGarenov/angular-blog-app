@@ -9,6 +9,7 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class SingleCategoryComponent implements OnInit {
   postsArray: Array<object> = [];
+  categoryObj: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,6 +19,7 @@ export class SingleCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((val) => {
       console.log(val);
+      this.categoryObj = val;
       this.postService.loadCategoryPosts(val['id']).subscribe((post) => {
         this.postsArray = post;
       });
