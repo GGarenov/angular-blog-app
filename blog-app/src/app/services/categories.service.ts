@@ -20,7 +20,7 @@ export class CategoriesService {
       .pipe(
         map((actions) => {
           return actions.map((a) => {
-            const { id, ...data } = a.payload.doc.data() as Category; // Destructure id from data
+            const { id, ...data } = a.payload.doc.data() as Category;
             const docId = a.payload.doc.id;
             return { id: docId, ...data };
           });
