@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sub } from '../models/sub';
+import { SubscribersService } from '../services/subscribers.service';
 
 @Component({
   selector: 'app-subscription-form',
@@ -7,7 +8,7 @@ import { Sub } from '../models/sub';
   styleUrls: ['./subscription-form.component.css'],
 })
 export class SubscriptionFormComponent implements OnInit {
-  constructor() {}
+  constructor(private subService: SubscribersService) {}
 
   ngOnInit(): void {}
 
@@ -16,5 +17,7 @@ export class SubscriptionFormComponent implements OnInit {
       name: formVal.name,
       email: formVal.email,
     };
+
+    this.subService.addSubs(subData);
   }
 }
