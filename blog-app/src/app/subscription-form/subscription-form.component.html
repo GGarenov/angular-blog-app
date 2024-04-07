@@ -6,12 +6,14 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
         numquam?
       </p>
-      <form action="" class="form-inline mb-5 mt-5">
+      <form class="form-inline mb-5 mt-5" #subForm="ngForm">
         <div class="form-group col-md-5">
           <input
             type="text"
             class="form-control shadow-effect"
             placeholder="Your name"
+            name="name"
+            ngModel
           />
         </div>
         <div class="form-group col-md-5">
@@ -19,6 +21,8 @@
             type="email"
             class="form-control shadow-effect"
             placeholder="Email"
+            name="email"
+            ngModel
           />
         </div>
         <div class="col-md-2">
