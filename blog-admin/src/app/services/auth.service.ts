@@ -15,7 +15,13 @@ export class AuthService {
     private firebaseAuth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) {
+    const user = JSON.parse(localStorage.getItem('user') as string);
+    if (user) {
+      this.loggedIn.next(true);
+      this.isLoggedInGuard = true;
+    }
+  }
 
   login(email: string, password: string) {
     return this.firebaseAuth
