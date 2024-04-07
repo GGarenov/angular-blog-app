@@ -6,7 +6,11 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
         numquam?
       </p>
-      <form class="form-inline mb-5 mt-5" #subForm="ngForm">
+      <form
+        class="form-inline mb-5 mt-5"
+        #subForm="ngForm"
+        (ngSubmit)="onSubmit(subForm.value)"
+      >
         <div class="form-group col-md-5">
           <input
             type="text"
