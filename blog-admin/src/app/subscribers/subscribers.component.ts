@@ -17,4 +17,8 @@ export class SubscribersComponent implements OnInit {
       console.log(this.subscribersArray);
     });
   }
+
+  onDelete(id: string) {
+    this.subService.deleteData(id);
+  }
 }

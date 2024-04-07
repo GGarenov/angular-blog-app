@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SubscribersService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private toastr: ToastrService
+  ) {}
 
   loadData() {
     return this.firestore
@@ -21,5 +25,14 @@ export class SubscribersService {
           });
         })
       );
+  }
+
+  deleteData(id: string) {
+    this.firestore
+      .doc(`subscribers/${id}`)
+      .delete()
+      .then((docRef) => {
+        this.toastr.success('Data deleted successfully!');
+      });
   }
 }

@@ -33,7 +33,12 @@
                 <td>{{ subscriber.name }}</td>
                 <td>{{ subscriber.email }}</td>
                 <td>
-                  <button class="btn btn-sm btn-danger ml-2">Delete</button>
+                  <button
+                    class="btn btn-sm btn-danger ml-2"
+                    (click)="onDelete(subscriber.id)"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
