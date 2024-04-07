@@ -1,0 +1,5 @@
+.fixed-size {
+  width: 500px; /* Adjust as needed */
+  height: 500px; /* Adjust as needed */
+  object-fit: cover; /* This will ensure that the image covers the entire width and height specified, without stretching */
+}

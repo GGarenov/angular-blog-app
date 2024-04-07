@@ -13,7 +13,7 @@ interface CategoryData {
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css'],
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
   categoryArray: Array<CategoryData> = [];
   formCategory: string = '';
   formStatus: string = 'Add';
