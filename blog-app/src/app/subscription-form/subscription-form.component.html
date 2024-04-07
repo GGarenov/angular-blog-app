@@ -6,10 +6,19 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
         numquam?
       </p>
+
+      <div class="alert alert-danger mt-3" *ngIf="isEmailError">
+        Email already exists
+      </div>
+      <div class="alert alert-info mt-3" *ngIf="isSubscribed">
+        Thank you for subscribing!
+      </div>
+
       <form
         class="form-inline mb-5 mt-5"
         #subForm="ngForm"
         (ngSubmit)="onSubmit(subForm.value)"
+        *ngIf="!isSubscribed"
       >
         <div class="form-group col-md-5">
           <input
