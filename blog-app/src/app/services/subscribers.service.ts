@@ -15,4 +15,10 @@ export class SubscribersService {
         console.log('Subscribed Successfully');
       });
   }
+
+  checkSubs(subEmail: any) {
+    return this.firebase
+      .collection('subscribers', (ref) => ref.where('email', '==', subEmail))
+      .get();
+  }
 }

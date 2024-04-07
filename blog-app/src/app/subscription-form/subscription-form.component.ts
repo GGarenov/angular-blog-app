@@ -18,6 +18,15 @@ export class SubscriptionFormComponent implements OnInit {
       email: formVal.email,
     };
 
-    this.subService.addSubs(subData);
+    // this.subService.addSubs(subData);
+    this.subService.checkSubs(subData.email).subscribe((val) => {
+      console.log(val);
+
+      if (val.empty) {
+        this.subService.addSubs(subData);
+      } else {
+        console.log('Already Subscribed');
+      }
+    });
   }
 }
