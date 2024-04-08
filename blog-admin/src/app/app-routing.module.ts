@@ -26,6 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

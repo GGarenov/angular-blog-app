@@ -24,6 +24,7 @@ import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RegisterComponent } from './auth/register/register.component';
     PostCardComponent,
     LoginComponent,
     RegisterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
