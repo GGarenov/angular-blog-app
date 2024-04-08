@@ -7,6 +7,7 @@ import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'term-conditions', component: TermsAndConditionsComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
