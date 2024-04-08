@@ -20,6 +20,8 @@ import { CommentListComponent } from './comments/comment-list/comment-list.compo
 import { AboutComponent } from './pages/about/about.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
     CommentListComponent,
     AboutComponent,
     PostCardComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

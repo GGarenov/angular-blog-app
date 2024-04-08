@@ -6,6 +6,7 @@ import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutComponent } from './pages/about/about.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'term-conditions', component: TermsAndConditionsComponent },
   { path: 'contact', component: ContactUsComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
