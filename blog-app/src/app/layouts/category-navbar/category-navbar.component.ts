@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 interface Category {
   id: string;
   category: string;
-  // include other properties if they exist
 }
 
 @Component({
@@ -13,13 +14,24 @@ interface Category {
   styleUrls: ['./category-navbar.component.css'],
 })
 export class CategoryNavbarComponent implements OnInit {
-  categoryArray: Array<Category> = []; // Define the type here
+  categoryArray: Array<Category> = [];
+  userEmail: string = '';
+  isLoggedIn$: Observable<boolean> | undefined;
 
-  constructor(private categoryService: CategoriesService) {}
+  constructor(
+    private categoryService: CategoriesService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.categoryService.loadData().subscribe((val) => {
       this.categoryArray = val;
     });
+    this.userEmail = JSON.parse(localStorage.getItem('user') || '{}').email;
+
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+  onLogout() {
+    this.authService.logout();
   }
 }
