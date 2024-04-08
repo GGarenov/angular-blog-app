@@ -25,6 +25,7 @@ import { AllPostComponent } from './post/all-post/all-post.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { LoginComponent } from './auth/login/login.component';
 import { SubscribersComponent } from './subscribers/subscribers.component';
+import { UsersComponent } from './users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { SubscribersComponent } from './subscribers/subscribers.component';
     AllPostComponent,
     LoginComponent,
     SubscribersComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

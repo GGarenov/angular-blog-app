@@ -7,6 +7,7 @@ import { NewPostComponent } from './post/new-post/new-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { SubscribersComponent } from './subscribers/subscribers.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -24,6 +25,7 @@ const routes: Routes = [
     component: SubscribersComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
