@@ -16,12 +16,12 @@
     <small class="bg-light text-info text-center ml-1"
       >Views - {{ postData.views }}</small
     >
-
-    <h5 class="mt-1 line-clamp-3">{{ postData.title }}</h5>
-    <!-- Add the 'line-clamp-3' class here -->
-    <p class="text-truncate">{{ postData.excerpt }}</p>
+    <br />
     <small class="bg-light text-warning text-center ml-3"
       >Last updated - {{ postData.createdAt.toMillis() | date }}</small
     >
+    <h5 class="mt-1 line-clamp-3">{{ postData.title }}</h5>
+    <!-- Add the 'line-clamp-3' class here -->
+    <p class="text-truncate">{{ postData.excerpt }}</p>
   </div>
 </div>
