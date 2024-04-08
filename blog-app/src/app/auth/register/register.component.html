@@ -9,15 +9,31 @@
             <p>Please create new account here!</p>
           </div>
 
-          <form (submit)="register()">
+          <form #registerForm="ngForm" (ngSubmit)="register()">
             <div class="form-group">
               <input
-                [(ngModel)]="firstName"
                 type="text"
                 class="form-control"
                 placeholder="First name"
                 name="firstName"
+                ngModel
+                #FirstName="ngModel"
+                required
+                [ngClass]="{
+                  'is-invalid': FirstName.touched && FirstName.invalid
+                }"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="FirstName.touched && FirstName.invalid"
+              >
+                <div
+                  class="alert alert-danger"
+                  *ngIf="FirstName.errors && FirstName.errors['required']"
+                >
+                  First name cannot be empty
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <input
@@ -26,8 +42,25 @@
                 class="form-control"
                 placeholder="Last name"
                 name="lastName"
+                #LastName="ngModel"
+                required
+                [ngClass]="{
+                  'is-invalid': LastName.touched && LastName.invalid
+                }"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="LastName.touched && LastName.invalid"
+              >
+                <div
+                  class="alert alert-danger"
+                  *ngIf="LastName.errors && LastName.errors['required']"
+                >
+                  Last name cannot be empty
+                </div>
+              </div>
             </div>
+
             <div class="form-group">
               <input
                 [(ngModel)]="email"
@@ -35,7 +68,22 @@
                 class="form-control"
                 placeholder="Email"
                 name="email"
+                #Email="ngModel"
+                required
+                email
+                [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="Email.touched && Email.invalid"
+              >
+                <div *ngIf="Email.errors && Email.errors['required']">
+                  Email cannot be empty
+                </div>
+                <div *ngIf="Email.errors && Email.errors['email']">
+                  Please enter a valid email address
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <input
@@ -44,7 +92,23 @@
                 class="form-control"
                 placeholder="Password"
                 name="password"
+                #Password="ngModel"
+                required
+                [ngClass]="{
+                  'is-invalid': Password.touched && Password.invalid
+                }"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="Password.touched && Password.invalid"
+              >
+                <div *ngIf="Password.errors && Password.errors['required']">
+                  Password cannot be empty
+                </div>
+                <div *ngIf="Password.errors && Password.errors['password']">
+                  Please enter a valid password
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <input
@@ -53,10 +117,46 @@
                 class="form-control"
                 placeholder="Confirm password"
                 name="confirmPassword"
+                #ConfirmPassword="ngModel"
+                required
+                [ngClass]="{
+                  'is-invalid':
+                    (ConfirmPassword.touched && ConfirmPassword.invalid) ||
+                    password !== confirmPassword
+                }"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="ConfirmPassword.touched && ConfirmPassword.invalid"
+              >
+                <div
+                  *ngIf="
+                    ConfirmPassword.errors && ConfirmPassword.errors['required']
+                  "
+                >
+                  Confirm password cannot be empty
+                </div>
+                <div
+                  *ngIf="
+                    ConfirmPassword.errors && ConfirmPassword.errors['password']
+                  "
+                >
+                  Please enter a valid password
+                </div>
+              </div>
+              <div
+                class="alert alert-danger"
+                *ngIf="password !== confirmPassword && ConfirmPassword.touched"
+              >
+                Passwords do not match
+              </div>
             </div>
 
-            <button type="submit" class="btn btn-info btn-block btn-theme">
+            <button
+              type="submit"
+              class="btn btn-info btn-block btn-theme"
+              [disabled]="registerForm.invalid"
+            >
               Create Account
             </button>
           </form>

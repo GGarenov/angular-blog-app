@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent {
   password = '';
   confirmPassword = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     if (this.password !== this.confirmPassword) {
@@ -29,5 +30,7 @@ export class RegisterComponent {
       .catch((error: any) => {
         console.error('Error registering user', error);
       });
+
+    this.router.navigate(['/login']);
   }
 }
