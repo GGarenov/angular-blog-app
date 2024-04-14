@@ -9,6 +9,7 @@ import {
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -28,15 +29,19 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isLoggedInGuard) {
-      console.log('Access granted');
-
-      return true;
-    } else {
-      console.log('Access denied');
-      this.toastr.warning('Please login to access this page');
-      this.router.navigate(['/login']);
-      return false;
-    }
+    return this.authService.isLoggedIn().pipe(
+      take(1),
+      map((isLoggedIn: boolean) => {
+        if (isLoggedIn) {
+          console.log('Access granted');
+          return true;
+        } else {
+          console.log('Access denied');
+          this.toastr.warning('Please login to access this page');
+          this.router.navigate(['/login']);
+          return false;
+        }
+      })
+    );
   }
 }
