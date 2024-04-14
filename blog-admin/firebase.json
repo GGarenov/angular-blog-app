@@ -1,1 +1,13 @@
-{}
+{
+  "hosting": {
+    "target": "blogAdmin",
+    "public": "dist/blog-admin",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "angular-blog-ab62c"
+  },
+  "targets": {
+    "angular-blog-ab62c": {
+      "hosting": {
+        "blogAdmin": [
+          "blog-admin-123"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
