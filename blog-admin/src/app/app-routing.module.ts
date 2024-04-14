@@ -8,10 +8,20 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { SubscribersComponent } from './subscribers/subscribers.component';
 import { UsersComponent } from './users/users.component';
+import { LoginGuard } from './services/login.guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'categories',
     component: CategoriesComponent,

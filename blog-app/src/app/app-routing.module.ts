@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './services/guard.service';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { LoginGuard } from './services/login.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
     component: ContactUsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
