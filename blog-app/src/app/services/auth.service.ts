@@ -10,14 +10,19 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  isLoggedInGuard: boolean = false;
+  userEmail: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.loggedIn.next(true);
+    }
+  }
 
   async register(
     firstName: string,
@@ -31,6 +36,7 @@ export class AuthService {
     );
     const user = userCredential.user;
     if (user) {
+      this.afAuth.signOut();
       return this.afs.collection('users').doc(user.uid).set({
         firstName,
         lastName,
@@ -47,17 +53,33 @@ export class AuthService {
         this.toastr.success('Login Successful');
         this.loadUser();
         this.loggedIn.next(true);
-        this.isLoggedInGuard = true;
         this.router.navigate(['/']);
       })
       .catch((e) => {
-        this.toastr.error(e);
+        if (
+          e.code === 'auth/wrong-password' ||
+          e.code === 'auth/user-not-found' ||
+          e.code === 'auth/invalid-email' ||
+          e.code === 'auth/invalid-credential'
+        ) {
+          this.toastr.error('Wrong credentials');
+        } else {
+          this.toastr.error(e.message);
+        }
       });
   }
 
   loadUser() {
     this.afAuth.authState.subscribe((user) => {
-      localStorage.setItem('user', JSON.stringify(user));
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.loggedIn.next(true);
+        this.userEmail.next(user.email ?? '');
+      } else {
+        localStorage.removeItem('user');
+        this.loggedIn.next(false);
+        this.userEmail.next('');
+      }
     });
   }
 
@@ -68,7 +90,6 @@ export class AuthService {
         this.toastr.success('Logout Successful');
         localStorage.removeItem('user');
         this.loggedIn.next(false);
-        this.isLoggedInGuard = false;
         this.router.navigate(['/login']);
       })
       .catch((e) => {

@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoggedInGuard: boolean = false;
+  userEmail: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -20,6 +21,7 @@ export class AuthService {
     if (user) {
       this.loggedIn.next(true);
       this.isLoggedInGuard = true;
+      this.userEmail.next(user.email);
     }
   }
 
@@ -31,7 +33,7 @@ export class AuthService {
         this.loadUser();
         this.loggedIn.next(true);
         this.isLoggedInGuard = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       })
       .catch((e) => {
         this.toastr.error(e);
@@ -41,6 +43,7 @@ export class AuthService {
   loadUser() {
     this.firebaseAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
+      this.userEmail.next(user?.email as string);
     });
   }
 
