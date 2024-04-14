@@ -17,8 +17,6 @@ import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
-import { CommentFormComponent } from './comments/comment-form/comment-form.component';
-import { CommentListComponent } from './comments/comment-list/comment-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,8 +36,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     TermsAndConditionsComponent,
     ContactUsComponent,
     SubscriptionFormComponent,
-    CommentFormComponent,
-    CommentListComponent,
     AboutComponent,
     PostCardComponent,
     LoginComponent,
