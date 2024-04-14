@@ -27,10 +27,15 @@ export class CategoryNavbarComponent implements OnInit {
     this.categoryService.loadData().subscribe((val) => {
       this.categoryArray = val;
     });
-    this.userEmail = JSON.parse(localStorage.getItem('user') || '{}').email;
+
+    this.authService.loadUser();
+    this.authService.userEmail.subscribe((email) => {
+      this.userEmail = email;
+    });
 
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
+
   onLogout() {
     this.authService.logout();
   }
