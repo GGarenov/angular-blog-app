@@ -115,7 +115,7 @@ export class NewPostComponent implements OnInit {
 
   onSubmit() {
     let splitted = this.postForm.value.category.split('-');
-    console.log(splitted);
+
     const postData: Post = {
       title: this.postForm.value.title,
       permalink: this.postForm.value.permalink,

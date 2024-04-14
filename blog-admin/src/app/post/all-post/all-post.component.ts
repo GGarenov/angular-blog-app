@@ -9,7 +9,6 @@ interface Post {
   category: { category: string };
   createdAt: { seconds: number };
   isFeatured: boolean;
-  // Add other properties as needed
 }
 
 @Component({
@@ -24,7 +23,6 @@ export class AllPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.loadData().subscribe((val: any) => {
-      console.log(val);
       this.postArray = val as Post[];
     });
   }
