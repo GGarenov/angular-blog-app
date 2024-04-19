@@ -43,3 +43,5 @@ Thumbs.db
 
 # Folders
 /environments
+/.firebase
+/firebase
