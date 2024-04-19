@@ -36,3 +36,6 @@ Open `http://localhost:4200/` in your browser to view the application.
 
 The blog is deployed using firebase
 https://angular-blog-ab62c.web.app/
+
+Admin Panel: 
+https://blog-admin-123.web.app/dashboard
